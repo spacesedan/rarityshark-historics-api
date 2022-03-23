@@ -1,0 +1,27 @@
+
+
+service: serverless
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: go1.x
+
+
+package:
+  patterns:
+    - '!./**'
+    - ./bin/**
+
+functions:
+  hello:
+    handler: bin/historics
+    events:
+      - http:
+          path: /
+          method: ANY
+      -http:
+        path: /{proxy+}
+        method: ANY
+
